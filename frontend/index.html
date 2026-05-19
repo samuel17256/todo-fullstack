@@ -13,7 +13,62 @@
     </div>
 
     <script>
-        
+        const API_BASE_URL = "http://localhost:8000/api/v1"
+
+const ENDPOINTS = {
+  register: "/auth/register",
+  login: "/auth/login",
+  todos: "/todos",
+}
+
+function getAuthHeaders() {
+  const token = localStorage.getItem("token")
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+  }
+}
+
+async function register(firstName, lastName, email, password) {
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.register}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ first_name: firstName, last_name: lastName, email, password })
+  })
+  return await response.json()
+}
+
+async function login(email, password) {
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.login}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  })
+  const result = await response.json()
+  if (result.access_token) {
+    localStorage.setItem("token", result.access_token)
+  }
+  return result
+}
+
+async function getTodos() {
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.todos}`, {
+    method: "GET",
+    headers: getAuthHeaders()
+  })
+  const res = await response.json()
+  console.log(res);
+  
+}
+
+async function createTodo(title, body) {
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.todos}`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ title, body })
+  })
+  return await response.json()
+}
     </script>
 </body>
 </html>

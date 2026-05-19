@@ -2,18 +2,22 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
+    )
 
-    postgres_user: str
-    postgres_password: str
-    postgres_db: str
-    postgres_host: str = "localhost"
-    postgres_port: int = 5432
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = 5432
 
-    database_url: str
+    DATABASE_URL: str
 
-    jwt_secret_key: str
-    jwt_expiration_minutes: int = 60
+    JWT_SECRET_KEY: str
+    JWT_EXPIRATION_MINUTES: int = 60
 
     @property
     def jwt_algorithm(self) -> str:
