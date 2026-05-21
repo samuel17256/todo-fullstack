@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My-todo — Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class="min-h-screen bg-[#0d1117] text-[#e6edf3] flex flex-col items-center justify-center p-6">
+
+   <!-- Grid bg -->
+   <div class="bg-grid fixed inset-0 z-0 pointer-events-none"></div>
+
+   <!-- Glow blobs -->
+   <div class="animate-drift fixed -top-48 -left-24 w-150 h-150 rounded-full pointer-events-none z-0"
+       style="background: radial-gradient(circle, rgba(29,158,117,0.12) 0%, transparent 70%)"></div>
+   <div class="animate-drift-2 fixed -bottom-24 -right-12 w-100 h-100 rounded-full pointer-events-none z-0"
+       style="background: radial-gradient(circle, rgba(29,158,117,0.07) 0%, transparent 70%)"></div>
+
+   <!-- Card -->
+   <div
+       class="animate-fade-up relative z-10 w-full max-w-md bg-[#161b22] border border-[#30363d] rounded-2xl px-8 py-10 shadow-xl shadow-black/40">
+
+        <div class="flex items-center gap-2.5 mb-8">
+            <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <span class="brand-name text-base font-semibold text-emerald-900">My-todo</span>
+        </div>
+
+        <h1 class="text-2xl font-semibold text-emerald-900 mb-1">Create your account</h1>
+        <p class="text-sm text-gray-400 mb-7">Start organizing your tasks today</p>
+
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="flex flex-col gap-1">
+                <label for="firstName" class="text-xs font-medium text-gray-500 uppercase tracking-wide">First name</label>
+                <input
+                    type="text" id="firstName" placeholder="Samuel"
+                    autocomplete="given-name"
+                    class="w-full h-10 px-3 rounded-lg border bg-[#0d1117] border-[#30363d] text-sm text-gray-800 placeholder-gray-300 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition"
+                >
+                <span class="field-error text-xs text-red-500" id="err-first">First name is required</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <label for="lastName" class="text-xs font-medium text-gray-500 uppercase tracking-wide">Last name</label>
+                <input
+                    type="text" id="lastName" placeholder="Nanbam"
+                    autocomplete="family-name"
+                    class="w-full h-10 px-3 rounded-lg border bg-[#0d1117] border-[#30363d] text-sm text-gray-800 placeholder-gray-300 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition"
+                >
+                <span class="field-error text-xs text-red-500" id="err-last">Last name is required</span>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1 mb-4">
+            <label for="email" class="text-xs font-medium text-gray-500 uppercase tracking-wide">Email address</label>
+            <input
+                type="email" id="email" placeholder="samuel@example.com"
+                autocomplete="email"
+                class="w-full h-10 px-3 rounded-lg border bg-[#0d1117] border-[#30363d] text-sm text-gray-800 placeholder-gray-300 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition"
+            >
+            <span class="field-error text-xs text-red-500" id="err-email">Enter a valid email address</span>
+        </div>
+
+        <div class="flex flex-col gap-1 mb-6">
+            <label for="password" class="text-xs font-medium text-gray-500 uppercase tracking-wide">Password</label>
+            <div class="relative">
+                <input
+                    type="password" id="password" placeholder="Min. 8 characters"
+                    autocomplete="new-password"
+                    class="pw-input w-full h-10 px-3 rounded-lg border bg-[#0d1117] border-[#30363d] text-sm text-gray-800 placeholder-gray-300 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition"
+                >
+                <button
+                    type="button" id="togglePw"
+                    aria-label="Toggle password visibility"
+                    class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition cursor-pointer"
+                >
+                    <svg id="eyeShow" class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                    <svg id="eyeHide" class="w-4.5 h-4.5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                    </svg>
+                </button>
+            </div>
+            <span class="field-error text-xs text-red-500" id="err-pw">Password must be at least 8 characters</span>
+        </div>
+
+        <button
+            type="button" id="submitBtn"
+            class="w-full h-11 bg-[#1D9E75] hover:bg-[#1D9E75]/80 active:scale-98 text-white text-sm font-semibold rounded-xl flex items-center justify-center gap-2 transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+            <div class="spinner spin w-4 h-4 border-2 border-white/40 border-t-white rounded-full"></div>
+            <span class="btn-label">Create account</span>
+        </button>
+
+        <div id="msgBox" class="hidden mt-4 px-4 py-3 rounded-xl text-sm md:flex items-center gap-2"></div>
+
+        <p class="mt-6 text-center text-sm text-gray-400">
+            Already have an account?
+            <a href="./login.html" class="text-emerald-600 font-medium hover:underline">Sign in</a>
+        </p>
+
+    </div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/register.js"></script>
+</body>
+</html>

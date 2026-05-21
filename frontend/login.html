@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My-todo — Sign in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+
+<body class="min-h-screen bg-[#0d1117] text-[#e6edf3] flex flex-col items-center justify-center p-6">
+
+    <!-- Grid bg -->
+    <div class="bg-grid fixed inset-0 z-0 pointer-events-none"></div>
+
+    <!-- Glow blobs -->
+    <div class="animate-drift fixed -top-48 -left-24 w-150 h-150 rounded-full pointer-events-none z-0"
+        style="background: radial-gradient(circle, rgba(29,158,117,0.12) 0%, transparent 70%)"></div>
+    <div class="animate-drift-2 fixed -bottom-24 -right-12 w-100 h-100 rounded-full pointer-events-none z-0"
+        style="background: radial-gradient(circle, rgba(29,158,117,0.07) 0%, transparent 70%)"></div>
+
+    <!-- Card -->
+    <div
+        class="animate-fade-up relative z-10 w-full max-w-md bg-[#161b22] border border-[#30363d] rounded-2xl px-8 py-10 shadow-xl shadow-black/40">
+
+        <!-- Brand -->
+        <div class="flex">
+          <a href="./index.html" class="no-underline flex items-center gap-2.5 mb-4">
+              <div class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <span class="text-[15px] font-semibold text-[#e6edf3] tracking-tight">My-todo</span>
+          </a>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-[26px] font-bold text-[#e6edf3] tracking-tight mb-1">Welcome back</h1>
+        <p class="text-[13px] text-[#7d8590] mb-8">Sign in to continue with your tasks</p>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1.5 mb-4">
+            <label for="email" class="text-[11px] font-medium text-[#7d8590] uppercase tracking-widest">Email
+                address</label>
+            <input type="email" id="email" placeholder="john@example.com" autocomplete="email"
+                class="w-full h-10 px-3 rounded-lg bg-[#0d1117] border border-[#30363d] text-[13px] text-[#e6edf3] placeholder-[#484f58] outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition">
+            <span class="field-error text-[11px] text-red-400" id="err-email">Enter a valid email address</span>
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1.5 mb-2">
+            <div class="flex items-center justify-between">
+                <label for="password"
+                    class="text-[11px] font-medium text-[#7d8590] uppercase tracking-widest">Password</label>
+                <a href="#"
+                    class="text-[11px] text-emerald-500 hover:text-emerald-400 hover:underline transition">Forgot
+                    password?</a>
+            </div>
+            <div class="relative">
+                <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"
+                    class="w-full h-10 pl-3 pr-10 rounded-lg bg-[#0d1117] border border-[#30363d] text-[13px] text-[#e6edf3] placeholder-[#484f58] outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition">
+                <button type="button" id="togglePw"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[#484f58] hover:text-[#7d8590] transition cursor-pointer bg-transparent border-none">
+                    <svg id="eyeShow" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    <svg id="eyeHide" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    </svg>
+                </button>
+            </div>
+            <span class="field-error text-[11px] text-red-400" id="err-pw">Password is required</span>
+        </div>
+
+        <!-- Remember me -->
+        <div class="flex items-center gap-2 mt-3 mb-6">
+            <input type="checkbox" id="remember"
+                class="w-4 h-4 rounded border-[#30363d] bg-[#0d1117] accent-emerald-600 cursor-pointer">
+            <label for="remember" class="text-[13px] text-[#7d8590] cursor-pointer select-none">Remember me for 30
+                days</label>
+        </div>
+
+        <!-- Submit -->
+        <button type="button" id="submitBtn"
+            class="w-full h-11 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white text-[14px] font-semibold rounded-xl flex items-center justify-center gap-2 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+            <div class="spinner w-4 h-4 border-2 border-white/30 border-t-white rounded-full"></div>
+            <span class="btn-label">Sign in</span>
+        </button>
+
+        <!-- Message -->
+        <div id="msgBox" class="hidden mt-4 px-4 py-3 rounded-xl text-[13px] md:flex items-center gap-2"></div>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-3 my-6">
+            <div class="flex-1 h-px bg-[#21262d]"></div>
+            <span class="text-[11px] text-[#484f58]">don't have an account?</span>
+            <div class="flex-1 h-px bg-[#21262d]"></div>
+        </div>
+
+        <!-- Register CTA -->
+        <a href="./register.html"
+            class="w-full h-11 flex items-center justify-center rounded-xl border border-[#30363d] text-[#7d8590] hover:border-emerald-600/40 hover:text-emerald-400 text-[14px] font-medium transition cursor-pointer">
+            Create an account
+        </a>
+
+    </div>
+
+
+    <script src="./js/config.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+
+</html>

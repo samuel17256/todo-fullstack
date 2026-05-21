@@ -13,6 +13,7 @@
 </head>
 
 <body class="min-h-screen bg-[#0d1117] text-[#e6edf3] flex flex-col">
+
     <div class="bg-grid fixed inset-0 z-0 pointer-events-none"></div>
 
     <div class="animate-drift fixed -top-48 -left-24 w-150 h-150 rounded-full pointer-events-none z-0"
@@ -22,8 +23,8 @@
 
     <!-- ===== NAVBAR ===== -->
     <nav
-        class="relative z-20 flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#1D9E75]/15 bg-[#0d1117]/80 backdrop-blur-md">
-        <a href="./index.html" class="flex items-center gap-2.5 no-underline">
+        class="relative z-10 flex items-center justify-between px-6 py-4 border-b border-[#1D9E75]/15 bg-[#0d1117]/80 backdrop-blur-md">
+        <div class="flex items-center gap-2.5">
             <div class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shrink-0">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5"
                     viewBox="0 0 24 24">
@@ -31,45 +32,12 @@
                 </svg>
             </div>
             <span class="text-[15px] font-semibold text-[#e6edf3] tracking-tight">My-todo</span>
-        </a>
-
-        <!-- Desktop auth buttons -->
-        <div class="hidden md:flex items-center gap-2.5">
-            <a href="./login.html"
-                class="px-4 py-1.5 rounded-lg border border-emerald-600/30 text-emerald-500 text-[13px] font-medium hover:bg-emerald-600/10 hover:border-emerald-500 transition cursor-pointer">
-                Sign in
-            </a>
-            <a href="./register.html"
-                class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[13px] font-medium transition cursor-pointer">
-                Register
-            </a>
         </div>
-
-        <!-- Mobile hamburger -->
-        <button type="button" id="navMenuBtn"
-            class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-[#30363d] text-[#e6edf3] hover:bg-[#21262d] transition cursor-pointer"
-            aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
-            <svg id="navIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg id="navIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-
-        <!-- Mobile dropdown menu -->
-        <div id="navMobileMenu"
-            class="nav-mobile-menu hidden md:hidden absolute top-full left-0 right-0 flex flex-col gap-2 p-4 border-b border-[#30363d] bg-[#161b22]/95 backdrop-blur-md shadow-lg shadow-black/30">
-            <a href="./login.html"
-                class="w-full text-center px-4 py-2.5 rounded-lg border border-emerald-600/30 text-emerald-500 text-[13px] font-medium hover:bg-emerald-600/10 transition cursor-pointer">
-                Sign in
-            </a>
-            <a href="./register.html"
-                class="w-full text-center px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[13px] font-medium transition cursor-pointer">
-                Register
-            </a>
+        <div class="flex items-center gap-2.5">
+            <button
+                class="px-4 py-1.5 rounded-lg border border-emerald-600/30 text-emerald-500 text-[13px] font-medium hover:bg-emerald-600/10 hover:border-emerald-500 transition cursor-pointer" onclick="logout()">
+                Sign out
+            </button>
         </div>
     </nav>
 
@@ -81,13 +49,13 @@
             <div
                 class="inline-flex items-center gap-1.5 bg-emerald-600/10 border border-emerald-600/25 text-emerald-400 text-[11px] font-medium uppercase tracking-widest px-3 py-1 rounded-full mb-5">
                 <span class="animate-pulse-dot w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
-                Guest mode
+                User mode
             </div>
             <h1 class="text-[clamp(28px,5vw,38px)] font-bold text-[#e6edf3] leading-tight tracking-tight mb-3">
                 Your tasks,<br><span class="text-emerald-500">done right.</span>
             </h1>
             <p class="text-[14px] text-[#7d8590] leading-relaxed">
-                Add todos below. Register free to save them permanently and sync across devices.
+                Add todos below. Your todos are save permanently and sync across devices.
             </p>
         </div>
 
@@ -99,7 +67,7 @@
                 <!-- Title -->
                 <div class="flex items-center border-b border-[#21262d]">
                     <span class="mono text-[10px] text-[#484f58] uppercase tracking-widest px-4 shrink-0">Title</span>
-                    <input id="todoTitle" type="text" placeholder="What needs to be done?" maxlength="120"
+                    <input id="todoTitleU" type="text" placeholder="What needs to be done?" maxlength="120"
                         autocomplete="off"
                         class="mono flex-1 h-11.5 pr-4 bg-transparent border-none outline-none text-[13px] text-[#e6edf3] placeholder-[#484f58]">
                 </div>
@@ -107,9 +75,9 @@
                 <div class="flex items-start">
                     <span
                         class="mono text-[10px] text-[#484f58] uppercase tracking-widest px-4 pt-3 shrink-0">Body</span>
-                    <textarea id="todoBody" placeholder="Add a description (optional)" maxlength="500" rows="2"
+                    <textarea id="todoBodyU" placeholder="Add a description (optional)" maxlength="500" rows="2"
                         class="mono flex-1 pt-3 pb-3 pr-4 bg-transparent border-none outline-none text-[13px] text-[#e6edf3] placeholder-[#484f58] resize-none leading-relaxed"></textarea>
-                    <button type="button" onclick="addGuestTodo()"
+                    <button type="button" onclick="addTodo()"
                         class="flex items-center gap-1.5 px-4 h-full min-h-17 bg-emerald-600 hover:bg-emerald-700 text-white text-[13px] font-medium transition whitespace-nowrap cursor-pointer self-stretch">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
                             viewBox="0 0 24 24">
@@ -131,9 +99,8 @@
             </div>
 
             <!-- List -->
-            <div id="todoList" class="todo-scroll min-h-30 max-h-95 overflow-y-auto"></div>
+            <div id="todoLists" class="todo-scroll min-h-30 max-h-95 overflow-y-auto"></div>
 
-            <!-- Card footer -->
             <div class="flex items-center justify-between px-4 py-2.5 border-t border-[#21262d] bg-[#0d1117]">
                 <span id="footerCount" class="mono text-[11px] text-[#484f58]">0 tasks</span>
                 <button onclick="clearDone()"
@@ -143,7 +110,6 @@
             </div>
         </div>
 
-        <!-- Save nudge -->
         <div
             class="animate-fade-up-2 w-full max-w-140 mt-3 flex items-center gap-3 bg-emerald-600/8 border border-emerald-600/20 rounded-xl px-4 py-3">
             <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
@@ -152,31 +118,21 @@
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <p class="flex-1 text-[12px] text-[#7d8590] leading-relaxed">
-                You're in <span class="text-emerald-400 font-medium">guest mode</span> — todos are shared publicly.
-                Register to save private todos to your account.
+                You're in <span class="text-emerald-400 font-medium">user mode</span> — todos will be saved when you
+                leave.
             </p>
-            <div class="flex flex-col md:flex-row gap-2 shrink-0">
-                <a href="./login.html"
-                    class="px-3 py-1 rounded-md border border-emerald-600/30 text-emerald-500 text-[12px] font-medium hover:bg-emerald-600/10 transition cursor-pointer">
-                    Sign in
-                </a>
-                <a href="./register.html"
-                    class="px-3 py-1 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-[12px] font-medium transition cursor-pointer">
-                    Register
-                </a>
-            </div>
         </div>
 
     </main>
 
     <footer class="relative z-1 text-center py-4 text-[11px] text-[#30363d] border-t border-[#21262d]">
-        My-todo &mdash; Guest mode. Todos are saved to the public guest list.
+        My-todo &mdash; user session. Data is save for server.
     </footer>
 
     <script src="./js/config.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/api.js"></script>
-    <script src="./js/guest.js"></script>
+    <script src="./js/dashboard.js"></script>
 </body>
 
 </html>
